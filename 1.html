@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>智能社—http://www.zhinengshe.com</title>
+    <style>
+        body{
+            background: #eee;
+            font-size: 50px;
+            font-weight: bold;
+            font-family: "Microsoft YaHei";
+        }
+        span{
+            color: rgba(0,0,0,0);
+            text-shadow: 0 0 100px #6F0;
+            opacity:0;
+            transition: 1s all ease;
+        }
+        span.on{
+            text-shadow: 0 0 0 #F0F;
+            opacity:1;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            var str='往事就像一座古老的城墙，铺满厚厚的苔藓，可以回忆的实在不多。时光的浪涛总是将你我抛得好远，若今生有缘重逢，是否还能想起岁月残留下来的一点记忆？也许每个人心里都有一种怀旧情节，仿佛最初的相遇，永远都是最美的。无论老去多少年华，我们能记住的，始终是泛黄的昨天。有时候，翻开一本书，看到扉页里夹着的一枚落叶都会欣喜万分，因为叶脉上镂刻着岁月的印记，也留存着往日的温情。';
+
+            for(var i=0; i<str.length; i++){
+                var oSpan=document.createElement('span');
+                oSpan.innerHTML=str.charAt(i);
+                document.body.appendChild(oSpan);
+            }
+
+            var i=0;
+            var timer=null;
+            var aSpan=document.body.children;
+            timer=setInterval(function(){
+                aSpan[i].className='on';
+
+                i++;
+                if(i==aSpan.length){
+                    clearInterval(timer);
+                }
+            },100);
+        };
+    </script>
+</head>
+<body>
+</body>
+</html>
+
+
+
+
