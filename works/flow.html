@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+	*{ margin:0; padding:0;}
+	div{ width:966px; margin:0 auto; overflow:hidden;}
+	ul{ width:300px; margin:10px; float:left;}
+	li{ background:yellow; margin:5px; list-style:none; font-size:100px; color:#fff; text-align:center; padding-top:30%;}
+	input{ width:966px; height:50px; background:#999; margin-left:200px; color:red; font-weight:bold; font-size:50px;}
+</style>
+<script>
+	window.onload=function(){
+		var aUl=document.getElementsByTagName('ul')
+		var arr=[];
+		
+		for(var i=0;i<aUl.length;i++){
+			arr.push(aUl[i]);
+		}
+		var aColor=['yellow','red','green','blue','pink'];
+		var n=0; //当前加载次数
+		
+		//模拟接收20个后台数据
+		creatLi();
+		
+		//到底部再接收20个数据
+		window.onscroll=function(){
+			var scrollTop=document.body.scrollTop || document.documentElement.scrollTop;
+			var clientHeight=document.documentElement.clientHeight;
+			var h=document.body.offsetHeight;
+			
+			if(h-300 < scrollTop+clientHeight){
+				creatLi();
+			}
+		}
+		
+		//封装好的 模拟接收20个后台数据
+		function creatLi(){
+			n++;
+			
+			if(n>5){
+				return false;
+			}
+			for(var i=0;i<20;i++){
+				var aLi=document.createElement('li');
+				aLi.style.height=rnd(100,300)+'px';
+				aLi.innerHTML=i;
+				aLi.style.background=aColor[n-1];
+				
+				arr.sort(function(ul1,ul2){
+					return ul1.offsetHeight-ul2.offsetHeight;
+				})
+				arr[0].appendChild(aLi);
+			}
+		}
+		
+		var oBtn=document.getElementById('btn');
+		oBtn.onclick=function(){
+			n=0;
+			creatLi();
+		}
+	}
+	
+	//封装随机数函数
+	function rnd(n,m){
+		return Math.floor(Math.random()*(m-n)+n)
+	}
+	
+	
+	
+</script>
+</head>
+
+<body>
+	<div>
+		<ul></ul>
+		<ul></ul>
+		<ul></ul>
+	</div>
+	<input type="button" value="下一屏" id="btn"/>
+	
+</body>
+</html>
